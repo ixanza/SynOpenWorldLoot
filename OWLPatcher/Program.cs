@@ -22,11 +22,12 @@ namespace ListMaker
         public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             var lvliMapWeap = LVLIMapWeap.CreateMap();
+            
 
             foreach (var leveledList in state.LoadOrder.PriorityOrder.LeveledItem().WinningOverrides())
             {
                 if (lvliMapWeap.ContainsValue(leveledList.FormKey)) continue;
-
+                
                 if (leveledList.Entries == null) continue;
 
                 for (var i = 0; i < leveledList.Entries.Count; i++)
@@ -52,6 +53,27 @@ namespace ListMaker
                     if (!lvliMapWeap.ContainsKey(entry.Item.Item.FormKey)) continue;
                     var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
                     modifiedNpc.Items![i].Item.Item.SetTo(lvliMapWeap[entry.Item.Item.FormKey]);
+                }
+            }
+
+            var lvliMapArmor = LVLIMapArmor.CreateMap();
+            foreach (var leveledList in state.LoadOrder.PriorityOrder.LeveledItem().WinningOverrides())
+            {
+                if (lvliMapArmor.ContainsValue(leveledList.FormKey)) continue;
+
+                if (leveledList.Entries == null) continue;
+
+                for (var i = 0; i < leveledList.Entries.Count; i++)
+                {
+                    var entry = leveledList.Entries[i];
+                    if (entry.Data == null) continue;
+                    if (!lvliMapArmor.ContainsKey(entry.Data.Reference.FormKey)) continue;
+                    if (leveledList.EditorID == null) continue;
+                    if (leveledList.EditorID.Contains("Outfit")) continue;
+                    if (leveledList.EditorID.Contains("OWL_")) continue;
+
+                    var modifiedList = state.PatchMod.LeveledItems.GetOrAddAsOverride(leveledList);
+                    modifiedList.Entries![i].Data!.Reference.SetTo(lvliMapArmor[entry.Data.Reference.FormKey]);
                 }
             }
         }
