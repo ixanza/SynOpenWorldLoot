@@ -279,10 +279,10 @@ namespace ListMaker
                 },
                 ["Steel"] = new Dictionary<string, (FormKey ArmorA, FormKey ArmorB, FormKey ArmorC, FormKey ArmorD)>()
                 {
-                    { "Boots",                      (Skyrim.Armor.ArmorSteelBootsA.FormKey , Skyrim.Armor.ArmorSteelBootsB.FormKey,FormKey.Null,FormKey.Null) },
-                    { "Cuirass",                    (Skyrim.Armor.ArmorSteelCuirassA.FormKey,Skyrim.Armor.ArmorSteelCuirassB.FormKey,FormKey.Null,FormKey.Null) },
-                    { "Gauntlets",                  (Skyrim.Armor.ArmorSteelGauntletsA.FormKey,Skyrim.Armor.ArmorSteelGauntletsB.FormKey,FormKey.Null,FormKey.Null) },
-                    { "Helmet",                     (Skyrim.Armor.ArmorSteelHelmetA.FormKey,Skyrim.Armor.ArmorSteelHelmetB.FormKey,FormKey.Null,FormKey.Null) },
+                    { "Boots",                      (Skyrim.Armor.ArmorSteelBootsA.FormKey , Skyrim.Armor.ArmorSteelBootsB.FormKey,Skyrim.LeveledItem.SublistArmorSteelBootsVariants.FormKey,FormKey.Null) },
+                    { "Cuirass",                    (Skyrim.Armor.ArmorSteelCuirassA.FormKey,Skyrim.Armor.ArmorSteelCuirassB.FormKey,Skyrim.LeveledItem.SublistArmorSteelCuirassVariants.FormKey,FormKey.Null) },
+                    { "Gauntlets",                  (Skyrim.Armor.ArmorSteelGauntletsA.FormKey,Skyrim.Armor.ArmorSteelGauntletsB.FormKey,Skyrim.LeveledItem.SublistArmorSteelGauntletsVariants.FormKey,FormKey.Null) },
+                    { "Helmet",                     (Skyrim.Armor.ArmorSteelHelmetA.FormKey,Skyrim.Armor.ArmorSteelHelmetB.FormKey,Skyrim.LeveledItem.SublistArmorSteelHelmetVariants.FormKey,FormKey.Null) },
                     { "Shield",                     (Skyrim.Armor.ArmorSteelShield.FormKey,FormKey.Null,FormKey.Null,FormKey.Null) },
                 }
             };
