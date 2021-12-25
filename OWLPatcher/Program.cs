@@ -76,6 +76,26 @@ namespace ListMaker
                     modifiedList.Entries![i].Data!.Reference.SetTo(lvliMapArmor[entry.Data.Reference.FormKey]);
                 }
             }
+
+            foreach (var container in state.LoadOrder.PriorityOrder.Container().WinningOverrides())
+            {
+                if (container.Items == null) continue;
+
+                for (var i = 0; i < container.Items.Count; i++)
+                {
+                    var entry = container.Items[i];
+
+                    if (entry.Item.Item == null) continue;
+                    if (!lvliMapWeap.ContainsKey(entry.Item.Item.FormKey) && !lvliMapArmor.ContainsKey(entry.Item.Item.FormKey)) continue;
+
+                    var modifiedContainer = state.PatchMod.Containers.GetOrAddAsOverride(container);
+                    if (lvliMapWeap.ContainsKey(entry.Item.Item.FormKey)) {
+                        modifiedContainer.Items![i].Item.Item.SetTo(lvliMapWeap[entry.Item.Item.FormKey]);
+                    } else {
+                        modifiedContainer.Items![i].Item.Item.SetTo(lvliMapArmor[entry.Item.Item.FormKey]);
+                    }
+                }
+            }
         }
     }
 }
